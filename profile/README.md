@@ -40,34 +40,44 @@
 <table align="center">
   <tr>
     <td align="center" width="200px">
-       <img width="197" height="210" alt="스크린샷 2026-06-16 오후 7 22 10" src="https://github.com/user-attachments/assets/d457973f-ae07-42bf-8d4a-e349343d5b38" alt="팀원1"/><br/>
+       <img width="197" height="210" alt="주용완" src="https://github.com/user-attachments/assets/d457973f-ae07-42bf-8d4a-e349343d5b38"/><br/>
       <b>주용완</b><br/>
-      <sub>역할: PM, DevOps, SRE, CDC</sub><br/>
-      <a href="https://github.com/username">GitHub</a>
+      <sub>PM, DevOps, SRE, CDC</sub><br/>
+      <a href="https://github.com/YongwanJoo">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>
+      </a>
     </td>
     <td align="center" width="200px">
        <img width="196" height="208" alt="스크린샷 2026-06-16 오후 7 24 35" src="https://github.com/user-attachments/assets/f0b9e192-4b7b-4ac9-aa35-3f24a2787733" alt="팀원2"/><br/>
       <b>서지혜</b><br/>
-      <sub>역할: PL, Cloud Infra, AI</sub><br/>
-      <a href="https://github.com/username">GitHub</a>
+      <sub>PL, Cloud Infra, AI</sub><br/>
+      <a href="https://github.com/seajihey">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>
+      </a>
     </td>
     <td align="center" width="200px">
        <img width="197" height="216" alt="스크린샷 2026-06-16 오후 7 25 55" src="https://github.com/user-attachments/assets/9442057e-09ec-4c91-9ad4-875d6c2fa77e"   alt="팀원3"/><br/>
       <b>유동균</b><br/>
-      <sub>역할: Logging, Monitoring</sub><br/>
-      <a href="https://github.com/username">GitHub</a>
+      <sub>Logging, Monitoring</sub><br/>
+      <a href="https://github.com/dbehdrbs0806">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>
+      </a>
     </td>
     <td align="center" width="200px">
        <img width="197" height="213" alt="스크린샷 2026-06-16 오후 7 28 07" src="https://github.com/user-attachments/assets/f878ea86-e17c-4978-9ab9-867381ed40bf" alt="팀원4"/><br/>
       <b>이준호</b><br/>
-      <sub>역할: Onpremise Infra</sub><br/>
-      <a href="https://github.com/username">GitHub</a>
+      <sub>Onpremise Infra</sub><br/>
+      <a href="https://github.com/Junhoss">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>
+      </a>
     </td>
     <td align="center" width="200px">
        <img width="198" height="207" alt="스크린샷 2026-06-16 오후 7 28 54" src="https://github.com/user-attachments/assets/ca17d793-f195-4baf-a1a7-ee41488f30f2" alt="팀원5"/><br/>
       <b>이명진</b><br/>
-      <sub>역할: Data Management, Infra</sub><br/>
-      <a href="https://github.com/username">GitHub</a>
+      <sub>Data Management, Infra</sub><br/>
+      <a href="https://github.com/septeratz">
+        <img src="https://img.shields.io/badge/GitHub-181717?style=flat-square&logo=github&logoColor=white"/>
+      </a>
     </td>
   </tr>
 </table>
