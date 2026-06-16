@@ -1,80 +1,204 @@
-# [우리FISA 6기] 클라우드 엔지니어링 과정 5팀
+<div align="center">
 
-## 1. 프로젝트 개요
+# 🏆 MoneyLog
+### 청년 맞춤형 금융 생활관리 플랫폼
+
+**[우리FISA 6기] 클라우드 엔지니어링 과정 5팀**
+
+[![GitHub](https://img.shields.io/badge/GitHub-5kstration-181717?style=flat-square&logo=github)](https://github.com/5kstration)
+[![Tech Stack](https://img.shields.io/badge/Tech-Spring%20Boot%20|%20React%20|%20AWS-blue?style=flat-square)](#-기술-스택)
+[![Architecture](https://img.shields.io/badge/Architecture-MSA%20|%20K8s%20|%20Istio-green?style=flat-square)](#-아키텍처)
+
+</div>
+
+---
+
+## 📑 목차
+
+1. [팀원 소개](#-팀원-소개)
+2. [프로젝트 개요](#-프로젝트-개요)
+   - [프로젝트 주제](#프로젝트-주제)
+   - [기획 배경 및 목적](#기획-배경-및-목적)
+   - [개발 목표](#개발-목표)
+3. [기술 스택](#-기술-스택)
+4. [아키텍처](#-아키텍처)
+   - [시스템 아키텍처](#시스템-아키텍처)
+   - [소프트웨어 아키텍처](#소프트웨어-아키텍처)
+5. [핵심 기능](#-핵심-기능)
+   - [핵심 기술 구성](#핵심-기술-구성)
+   - [세부 기능](#세부-기능)
+     - [1. AI 기반 소비 분석](#1-ai-기반-소비-분석-및-맞춤형-추천)
+     - [2. 실시간 이벤트 처리](#2-실시간-이벤트-처리-및-cdc-기반-데이터-동기화)
+     - [3. Istio 서비스 메시](#3-istio-기반-서비스-메시service-mesh-및-트래픽-제어)
+     - [4. Hot/Cold 아키텍처](#4-hotcold-데이터-아키텍처를-통한-데이터-라이프사이클-최적화)
+     - [5. AIOps 인프라 운영](#5-aiops-및-sre-기반의-고가용성-인프라-운영)
+
+---
+
+## 👥 팀원 소개
+
+<table align="center">
+  <tr>
+    <td align="center" width="200px">
+      <img src="https://via.placeholder.com/150" width="150px" alt="팀원1"/><br/>
+      <b>팀원 이름</b><br/>
+      <sub>역할: Backend</sub><br/>
+      <a href="https://github.com/username">GitHub</a>
+    </td>
+    <td align="center" width="200px">
+      <img src="https://via.placeholder.com/150" width="150px" alt="팀원2"/><br/>
+      <b>팀원 이름</b><br/>
+      <sub>역할: Frontend</sub><br/>
+      <a href="https://github.com/username">GitHub</a>
+    </td>
+    <td align="center" width="200px">
+      <img src="https://via.placeholder.com/150" width="150px" alt="팀원3"/><br/>
+      <b>팀원 이름</b><br/>
+      <sub>역할: DevOps</sub><br/>
+      <a href="https://github.com/username">GitHub</a>
+    </td>
+    <td align="center" width="200px">
+      <img src="https://via.placeholder.com/150" width="150px" alt="팀원4"/><br/>
+      <b>팀원 이름</b><br/>
+      <sub>역할: Infrastructure</sub><br/>
+      <a href="https://github.com/username">GitHub</a>
+    </td>
+    <td align="center" width="200px">
+      <img src="https://via.placeholder.com/150" width="150px" alt="팀원5"/><br/>
+      <b>팀원 이름</b><br/>
+      <sub>역할: AI/ML</sub><br/>
+      <a href="https://github.com/username">GitHub</a>
+    </td>
+  </tr>
+</table>
+
+---
+
+## 프로젝트 개요
 
 ### 프로젝트 주제
+
 **MoneyLog : 청년 맞춤형 금융 생활관리 플랫폼**
 
-### 기획 배경
+AI 기반 소비 분석과 소셜 피드를 결합하여, 청년들이 자신의 금융 생활을 즐겁게 관리하고 공유할 수 있는 참여형 금융 플랫폼입니다.
+
+### 기획 배경 및 목적
+
+<details>
+<summary><b>기획 배경 자세히 보기</b></summary>
+
+<br/>
+
 최근 청년 세대에게 소비는 단순한 지출 행위를 넘어, 자신의 가치관과 개성을 드러내는 중요한 자기표현의 수단이 되었습니다. 'Todo Mate'나 'Setlog'와 같은 서비스의 흥행에서 알 수 있듯, 자신의 일상과 목표를 기록하고 공유하며 또래와 동기부여를 주고받는 문화는 이미 청년 세대의 주요 트렌드로 자리 잡고 있습니다.
 
-그러나 기존의 금융 및 자산관리 애플리케이션은 대부분 계좌, 카드, 보험, 소비 내역과 같은 금융 데이터를 숫자와 통계 중심으로 제공하는 데 집중되어 있습니다. 이러한 방식은 사용자의 자산 현황을 확인하는 데는 효과적이지만, 청년 세대가 원하는 소셜 경험, 소비 맥락 공유, 사용자 간 피드백과 같은 참여형 기능을 충분히 제공하지 못합니다.
+그러나 기존의 금융 및 자산관리 애플리케이션은 대부분 계좌, 카드, 보험, 소비 내역과 같은 금융 데이터를 숫자와 통계 중심으로 제공하는 데 집중되어 있습니다.
 
-또한 청년층에게 필요한 청년정책, 복지 혜택, 금융상품, 보험과 카드 추천 정보가 여러 서비스와 기관에 흩어져 있어, 사용자가 자신의 상황에 맞는 정보를 직접 찾아야 하는 불편함도 존재합니다.
+**MoneyLog는 이러한 한계를 해결하기 위해:**
+- ✅ AI를 활용한 사용자 소비 데이터 분석
+- ✅ 가계부 작성과 관리 자동화 지원
+- ✅ 월별 소비 리포트 및 청년정책 추천
+- ✅ 소셜 피드 기반 소비 공유 및 피드백
 
-MoneyLog는 이러한 한계를 해결하기 위해 AI를 활용하여 사용자의 소비 데이터를 분석하고, 가계부 작성과 관리를 지원하는 청년 맞춤형 금융 생활관리 서비스를 제공합니다. 사용자는 월별 소비 리포트, 청년정책 추천, 카드 및 보험 추천 등의 기능을 통해 자신의 소비 패턴과 생활 조건에 맞는 정보를 확인할 수 있습니다.
+</details>
 
-이를 통해 사용자는 단순히 숫자를 입력하고 확인하는 가계부가 아니라, 자신의 소비 흐름과 생활 맥락을 이해하고 실질적인 조언을 제공받는 참여형 금융 관리 서비스를 경험할 수 있습니다. 결과적으로 MoneyLog는 가계부, 금융 추천, 청년정책, 소셜 공유, AI를 하나의 흐름으로 연결하여 청년 세대가 보다 쉽고 능동적으로 자신의 금융 생활을 관리할 수 있도록 돕는 참여형 금융 플랫폼을 지향합니다.
+#### 핵심 목적
 
-### 기획 목적
 
-#### 1. 핵심 목적
-금융 데이터의 '연결'과 '스토리화'를 통해 청년들이 자신만의 소비 방식을 자연스럽게 돌아볼 수 있는 소셜 금융 생태계 구축
+**금융 데이터의 '연결'과 '스토리화'를 통해 청년들이 자신만의 소비 방식을 자연스럽게 돌아볼 수 있는 소셜 금융 생태계 구축**
 
-#### 2. 세부 기획 목적
+#### 세부 목적 및 기대 효과
 
-**① 금융의 소셜화: 기록의 재미와 지속성 확보**
-- 단순한 지출 기록(가계부)을 넘어, 이를 '금융 피드'라는 시각적 콘텐츠로 전환함으로써 기록 자체에 재미를 부여합니다.
-- 'Todo Mate'처럼 또래와의 상호 피드백(공감, 응원)을 통해 자산관리에 대한 심리적 장벽을 낮추고 사용자의 서비스 리텐션을 극대화합니다.
-
-**② 정보 비대칭 해소: 청년 특화 금융·복지 허브 역할**
-- 자산관리 과정에서 막막함을 느끼는 청년들에게 파편화된 금융 정책 및 복지 정보를 맞춤형으로 제공합니다.
-- 이를 통해 사용자가 혜택을 놓치지 않도록 돕고, 서비스의 기능을 자산관리를 넘어선 '생활 밀착형 플랫폼'으로 확장합니다.
-
-#### 3. 기대 효과
-
-**사용자 측면**
-- 숫자 나열에서 벗어나 소비를 시각적 피드로 돌아보며 자산관리에 대한 심리적 거부감을 낮추고, 또래와의 자연스러운 상호작용 속에서 지속적인 기록 습관을 형성합니다.
-
-**플랫폼 측면**
-- 소셜 피드 기반의 높은 리텐션과 청년 특화 정보 제공을 통해 고관여 사용자층을 확보하며, 단순 자산관리를 넘어 생활 밀착형 금융 플랫폼으로의 확장 가능성을 열어둡니다.
-
-**사회적 측면**
-- 파편화된 청년 금융·복지 정보를 한 곳에서 접할 수 있게 함으로써, 몰라서 놓치는 혜택을 줄이고 청년 스스로 자신의 소비를 이해하는 문화를 자연스럽게 확산시킵니다.
+| 구분 | 내용 |
+|------|------|
+| **금융의 소셜화** | 단순 지출 기록을 '금융 피드'로 전환, 또래 피드백을 통한 리텐션 극대화 |
+| **정보 비대칭 해소** | 파편화된 청년정책/금융상품 정보를 맞춤형으로 제공 |
+| **사용자 측면** | 시각적 피드로 심리적 거부감 낮추고 지속적인 기록 습관 형성 |
+| **플랫폼 측면** | 소셜 피드 기반 높은 리텐션과 생활 밀착형 플랫폼 확장 |
+| **사회적 측면** | 청년 혜택 정보 접근성 향상, 금융 이해도 문화 확산 |
 
 ### 개발 목표
 
-#### 1. 고가용성 및 탄력적 인프라 환경 구현 (Infrastructure)
-- Amazon EKS 기반으로 컨테이너 환경을 구성하고, 트래픽 변화에 따라 자동으로 확장·축소되는 Auto-scaling을 적용합니다.
-- 서버 이중화를 통해 장애 발생 시에도 서비스가 중단되지 않도록 고가용성을 확보합니다.
+```mermaid
+graph LR
+    A[Infrastructure] --> F[고가용성 시스템]
+    B[Application] --> F
+    C[DevOps] --> F
+    D[Testing] --> F
+    E[AI/ML] --> F
+    
+    A -->|EKS, Auto-scaling| A1[탄력적 인프라]
+    B -->|MSA, Spring Boot| B1[금융 소셜 기능]
+    C -->|Jenkins, GitLab CI| C1[자동화 파이프라인]
+    D -->|JUnit, 통합 테스트| D1[품질 검증]
+    E -->|LangGraph, Claude| E1[AI 추천]
+```
 
-#### 2. 사용자 중심의 금융 소셜 기능 구현 (Application)
-- Java/TypeScript/Node.js 기반으로 핵심 비즈니스 로직을 구현합니다.
-- 보안 가이드라인에 맞는 인증·인가 시스템을 갖추고, 금융 데이터를 시각적 피드로 전환하는 스토리화 기능과 사용자·피드 검색 기능을 제공합니다.
-- 청년 사용자가 금융 정보를 부담 없이 접할 수 있도록 직관적인 UI/UX를 설계합니다.
+| 목표 | 설명 |
+|------|------|
+| **Infrastructure** | Amazon EKS 기반 컨테이너 환경, Auto-scaling, 서버 이중화 |
+| **Application** | Java/TypeScript 기반 MSA, 인증·인가, 소셜 피드 기능 |
+| **DevOps** | Jenkins/GitLab CI/CD 파이프라인, 실시간 모니터링 |
+| **Testing** | DB 무결성 검증, JUnit 단위/통합 테스트, 문서화 |
+| **AI/ML** | 소비 패턴 분석, 개인화 추천, 청년정책/카드/보험 추천 |
 
-#### 3. 지능형 모니터링 및 자동화 프로세스 구축 (DevOps)
-- GitLab, Docker, Jenkins를 활용한 CI/CD 파이프라인으로 코드 분석부터 배포까지 자동화합니다.
-- 실시간 로그 수집과 모니터링 체계를 갖춰 운영 중 발생하는 이슈에 빠르게 대응합니다.
+---
 
-#### 4. 단계별 품질 검증 및 무결성 확보 (Testing)
-- 금융 데이터 특성에 맞게 DB 무결성과 정합성을 우선으로 설계하고, JUnit 단위 테스트와 통합 테스트로 신뢰성을 검증합니다.
-- 분석부터 테스트까지 전 단계 산출물을 문서화하여 포트폴리오로 활용합니다.
+## 기술 스택
 
-#### 5. AI 기반 데이터 분석과 개인화 추천 구현 (AI)
-- 소비 내역과 카테고리별 지출 데이터를 기반으로 사용자의 가계부를 AI가 분석합니다.
-- AI는 사용자의 월별 소비 흐름, 주요 지출 카테고리, 수입 대비 지출 비율 등을 분석하여 개인 맞춤형 소비 리포트를 제공합니다.
-- 이를 기반으로 사용자의 소비 성향과 생활 조건에 적합한 청년정책과 카드 상품을 추천합니다.
-- AI는 사용자의 금융 생활 패턴을 분석하여, 개인에게 적합한 금융 생활 관리 방향과 맞춤형 가이드를 제시할 수 있도록 구현합니다.
+### Backend
 
-### 기술 스택
+<p align="left">
+<img src="https://img.shields.io/badge/Java%2017-007396?style=for-the-badge&logo=openjdk&logoColor=white"/>
+<img src="https://img.shields.io/badge/Python%203-3776AB?style=for-the-badge&logo=python&logoColor=white"/>
+<img src="https://img.shields.io/badge/Spring%20Boot%203.5-6DB33F?style=for-the-badge&logo=springboot&logoColor=white"/>
+<img src="https://img.shields.io/badge/FastAPI-009688?style=for-the-badge&logo=fastapi&logoColor=white"/>
+<img src="https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/PostgreSQL-4169E1?style=for-the-badge&logo=postgresql&logoColor=white"/>
+<img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white"/>
+</p>
+
+
+### Frontend
+
+<p align="left">
+<img src="https://img.shields.io/badge/Next.js%2016-000000?style=for-the-badge&logo=next.js&logoColor=white"/>
+<img src="https://img.shields.io/badge/React%2019-61DAFB?style=for-the-badge&logo=react&logoColor=black"/>
+<img src="https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white"/>
+<img src="https://img.shields.io/badge/Tailwind%20CSS-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white"/>
+<img src="https://img.shields.io/badge/GraphQL-E10098?style=for-the-badge&logo=graphql&logoColor=white"/>
+</p>
+
+### Infrastructure & DevOps
+
+<p align="left">
+<img src="https://img.shields.io/badge/AWS-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white"/>
+<img src="https://img.shields.io/badge/Kubernetes-326CE5?style=for-the-badge&logo=kubernetes&logoColor=white"/>
+<img src="https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white"/>
+<img src="https://img.shields.io/badge/Terraform-7B42BC?style=for-the-badge&logo=terraform&logoColor=white"/>
+<img src="https://img.shields.io/badge/Istio-466BB0?style=for-the-badge&logo=istio&logoColor=white"/>
+<img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=jenkins&logoColor=white"/>
+<img src="https://img.shields.io/badge/Prometheus-E6522C?style=for-the-badge&logo=prometheus&logoColor=white"/>
+<img src="https://img.shields.io/badge/Grafana-F46800?style=for-the-badge&logo=grafana&logoColor=white"/>
+</p>
+
+### AI/ML & Messaging
+
+<p align="left">
+<img src="https://img.shields.io/badge/LangGraph-1C3C3C?style=for-the-badge&logo=langchain&logoColor=white"/>
+<img src="https://img.shields.io/badge/Claude%20AI-8B5CF6?style=for-the-badge&logo=anthropic&logoColor=white"/>
+<img src="https://img.shields.io/badge/Neo4j-008CC1?style=for-the-badge&logo=neo4j&logoColor=white"/>
+<img src="https://img.shields.io/badge/NATS-27AAE1?style=for-the-badge&logo=nats.io&logoColor=white"/>
+<img src="https://img.shields.io/badge/Debezium-FF6600?style=for-the-badge&logo=debezium&logoColor=white"/>
+</p>
+
+<details>
+<summary><b>전체 기술 스택 상세 보기</b></summary>
+
+<br/>
 
 #### Backend
 - **Language**: Java 17, Python 3.x
-- **Framework**: 
-  - Spring Boot 3.5.14 (Auth, Budget, Social, Alarm Services)
-  - FastAPI 0.115.0 (AI Service)
-  - Node.js + TypeScript (BFF Server)
+- **Framework**: Spring Boot 3.5.14, FastAPI 0.115.0, Node.js + TypeScript
 - **Database**: PostgreSQL, Redis
 - **Message Queue**: NATS JetStream
 - **CDC**: Debezium
@@ -86,7 +210,6 @@ MoneyLog는 이러한 한계를 해결하기 위해 AI를 활용하여 사용자
 - **UI Library**: Radix UI, Tailwind CSS 4.2.0
 - **State Management**: Apollo Client (GraphQL)
 - **Data Visualization**: Recharts
-- **API Layer**: GraphQL + Apollo Server
 
 #### Infrastructure & DevOps
 - **Container**: Docker, Kubernetes (Amazon EKS)
@@ -95,63 +218,438 @@ MoneyLog는 이러한 한계를 해결하기 위해 AI를 활용하여 사용자
 - **CI/CD**: Jenkins, GitLab CI/CD
 - **Monitoring**: Prometheus, Grafana, Loki, Tempo, Alloy, Grafana Faro
 - **Observability**: OpenTelemetry, SonarQube
-- **Cloud**: AWS (S3, Lambda, RDS, EKS)
 
-#### Message & Event
-- **Message Broker**: NATS (Leaf Node + JetStream)
-- **CDC Tool**: Debezium (PostgreSQL Connector)
-- **Event Processing**: Change Data Capture (CDC) Pattern
+</details>
 
-## 2. 아키텍쳐
+---
 
-### 2-1. 시스템 아키텍쳐
-<img width="1384" height="600" alt="시스템아키텍처" src="https://github.com/user-attachments/assets/72edaf97-db0b-4e79-9380-15b96c2dcaf7" />
-
-### 설명
-이 시스템 아키텍처는 AWS 클라우드와 온프레미스(On-Premise) 환경을 Site-to-Site VPN으로 연결한 하이브리드 클라우드 구조입니다.
-* **AWS 클라우드**: Amazon EKS를 기반으로 다중 가용영역(Multi-AZ)에 퍼블릭/프라이빗 서브넷을 구성하여 고가용성을 확보했습니다. ALB, WAF를 통한 트래픽 제어 및 보안을 수행하며, Istio 인그레스 게이트웨이를 거쳐 워커 노드로 요청을 라우팅합니다. RDS, S3, Lambda 등의 AWS 네이티브 서비스와 GitLab, Jenkins 기반의 자동화된 CI/CD 파이프라인을 연동하고 있습니다.
-* **온프레미스**: vSphere(ESXi) 인프라 위에서 쿠버네티스(k8s) 클러스터가 동작하며, HAProxy와 Keepalived를 활용한 이중화를 구성했습니다. NATS JetStream 및 데이터베이스를 Active-Standby 구조로 배포하여 안정적인 메시징과 데이터 관리를 수행합니다.
-
-### 2-2. 소프트웨어 아키텍처
-<img width="476" height="593" alt="소프트웨어아키텍처" src="https://github.com/user-attachments/assets/50d8238b-6743-4830-9b6e-d8176b1e085d" />
+## 아키텍처
 
 
-### 설명
-이 소프트웨어 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반으로 백엔드 시스템을 구성하고 있습니다.
-* **게이트웨이 및 라우팅**: 클라이언트의 요청은 S3/CloudFront, ALB, Istio 인그레스 게이트웨이를 거쳐 인입됩니다. 이후 BFF(Backend For Frontend) 계층과 Spring Cloud Gateway를 통해 인증/인가를 수행하고 각 마이크로서비스로 안전하게 라우팅됩니다.
-* **마이크로서비스 구성**: 도메인별로 분리된 서비스(Social, Alarm, Budget, Auth, AI)로 구성되며, 각 서비스는 Controller-Service-Component-DBIO의 계층형 아키텍처를 따릅니다. 공통 설정 정보는 Config Server를 통해 중앙에서 관리됩니다.
-* **데이터 분산 및 동기화**: 각 서비스는 독립적인 데이터베이스(AWS RDS, 온프레미스 DB)를 사용하여 데이터 결합도를 낮췄습니다. 분산 환경에서의 데이터 동기화 및 이벤트 기반 처리를 위해 CDC(Change Data Capture)를 구축하여, 데이터베이스의 변경 사항을 비동기적으로 전파합니다.
+### 시스템 아키텍처
 
-## 3. 주요 기능 소개
+<img width="1384" alt="시스템아키텍처" src="https://github.com/user-attachments/assets/72edaf97-db0b-4e79-9380-15b96c2dcaf7" />
 
-### 3-1. 핵심 기술 구성
-#### 1. Graph RAG 및 Reranker 기반 초개인화 AI
-- **설명**: 사용자의 복잡한 금융 데이터와 결제 내역의 관계를 지식 그래프(Knowledge Graph) 형태로 구성하여, AI가 보다 정확하고 문맥에 맞는 개인화된 소비 인사이트를 제공합니다.
-- **핵심 기술**: Graph RAG(Retrieval-Augmented Generation)를 통한 관계형 데이터 검색, Reranker 모델을 활용한 최적의 답변/인사이트 추출 및 정렬, 대규모 언어 모델(LLM) 서빙
+#### 아키텍처 설명
 
-#### 2. 실시간 이벤트 처리 및 데이터 일관성 유지
-- **설명**: 쓰기와 내역 읽기의 책임을 분리하는 CQRS 패턴을 적용하여, 결제 발생 시 즉각적으로 이벤트를 수집하고 데이터 일관성을 유지하면서도 조회 성능을 극대화했습니다.
-- **핵심 기술**: NATS 및 이벤트 기반 아키텍처(EDA), Debezium을 활용한 CDC(Change Data Capture), CQRS 패턴을 통한 Read/Write 모델 분리 및 비동기 알림 처리
+하이브리드 클라우드 구조로 AWS와 온프레미스 환경을 Site-to-Site VPN으로 연결했습니다.
 
-#### 3. Istio 기반 서비스 매시(Service Mesh) 및 트래픽 제어
-- **설명**: 수많은 마이크로서비스 간의 복잡한 통신을 안전하고 효율적으로 관리하기 위해 Istio 서비스 매시를 도입하여, 애플리케이션 코드 변경 없이 네트워크 계층에서 트래픽 제어와 보안을 달성했습니다.
-- **핵심 기술**: 카나리(Canary) 배포 및 트래픽 라우팅을 통한 무중단 배포 안정성 확보, 서비스 간 mTLS(상호 TLS) 암호화 통신 및 분산 트레이싱
+| 환경 | 구성 요소 | 설명 |
+|------|-----------|------|
+| **AWS 클라우드** | EKS, Multi-AZ, ALB, WAF | 고가용성 확보, Istio 인그레스 게이트웨이 라우팅 |
+| **온프레미스** | vSphere(ESXi), K8s | HAProxy + Keepalived 이중화, NATS JetStream |
 
-#### 4. Hot/Cold 데이터 아키텍처를 통한 데이터 라이프사이클 최적화
-- **설명**: 최근 결제 내역이나 자주 조회되는 데이터는 빠른 조회를 위해 Hot Storage에 배치하고, 오래된 과거 데이터는 비용 효율적인 Cold Storage로 이관하여 시스템 성능과 운영 비용을 동시에 최적화합니다.
-- **핵심 기술**: 데이터 접근 빈도에 따른 자동화된 Hot/Cold 티어링(Tiering), 대용량 트랜잭션 데이터의 효율적인 파티셔닝 및 아카이빙, 조회 성능(Latency) 개선
+### 소프트웨어 아키텍처
 
-#### 5. AIOps 및 SRE 기반의 고가용성 인프라 운영
-- **설명**: 장애 발생을 사전에 예측하고, 시스템의 신뢰성(SLI/SLO)을 유지하기 위해 AI를 활용한 자동화된 인프라 운영 및 모니터링 환경을 구축했습니다.
-- **핵심 기술**: Prometheus/Grafana 기반 메트릭 수집, AIOps를 통한 Root Cause Analysis(근본 원인 분석) 및 슬랙 알림 파이프라인
+<img width="476" alt="소프트웨어아키텍처" src="https://github.com/user-attachments/assets/50d8238b-6743-4830-9b6e-d8176b1e085d" />
 
-### 3-2. 통합 워크플로우 다이어그램
-<img width="1294" height="665" alt="전체 워크플로우" src="https://github.com/user-attachments/assets/b212fefa-32a0-4377-b049-f00ff6290afa" />
+#### 아키텍처 설명
+
+마이크로서비스 아키텍처(MSA) 기반으로 도메인별 서비스를 분리했습니다.
+
+| 계층 | 설명 |
+|------|------|
+| **게이트웨이** | S3/CloudFront → ALB → Istio Gateway → BFF → Spring Cloud Gateway |
+| **마이크로서비스** | Social, Alarm, Budget, Auth, AI 서비스 (Controller-Service-Component-DBIO) |
+| **데이터 동기화** | 독립 DB 사용, CDC(Change Data Capture)로 비동기 전파 |
+
+---
+
+## 핵심 기능
+
+### 핵심 기술 구성
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+#### AI & Data
+1. **Graph RAG + Reranker 기반 AI**
+   - 지식 그래프 형태 금융 데이터 관계 구성
+   - 개인화된 소비 인사이트 제공
+
+2. **Hot/Cold 데이터 아키텍처**
+   - 자동화된 티어링으로 비용 최적화
+   - 성능과 비용 동시 개선
+
+</td>
+<td width="50%" valign="top">
+
+#### Infrastructure & DevOps
+3. **실시간 이벤트 처리 (CDC)**
+   - CQRS 패턴으로 읽기/쓰기 분리
+   - 데이터 일관성 유지
+
+4. **Istio 서비스 메시**
+   - 카나리 배포로 무중단 배포
+   - mTLS 암호화 통신
+
+5. **AIOps 기반 인프라 운영**
+   - SLO 기반 Error Budget 관리
+   - AI 자동 근본 원인 분석
+
+</td>
+</tr>
+</table>
+
+### 통합 워크플로우
+
+<img width="1294" alt="전체 워크플로우" src="https://github.com/user-attachments/assets/b212fefa-32a0-4377-b049-f00ff6290afa" />
+
+---
+
+### 세부 기능
+
+> 각 기능을 클릭하면 상세 설명으로 이동합니다.
 
 
-### 3-3. 세부 기능 소개
+---
 
-#### [기능명]
-- 기능 설명 : (해당 기능에 대한 설명을 작성해 주세요.)
-- 핵심 코드(스크립트) : (코드 블록을 활용하여 핵심 코드(스크립트)를 기재해 주세요.)
-- 코드 링크(스크립트 링크) : (해당 코드(스트립트)가 위치한 링크를 기재해 주세요.)
+## 1. AI 기반 소비 분석 및 맞춤형 추천
+
+### 기능 개요
+
+LangGraph 기반 AI 파이프라인을 통해 사용자의 소비 패턴을 분석하고, 개인 맞춤형 금융상품과 청년정책을 자동 추천합니다.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**핵심 기술**
+- LangGraph 9단계 DAG 파이프라인
+- Hybrid Search (pgvector + Neo4j + Reranker)
+- AWS Bedrock (Claude Haiku + Titan Embed)
+- Neo4j Graph DB 관계 표현
+
+</td>
+<td width="50%" valign="top">
+
+**성능 개선**
+- 코사인 유사도: 0.19 → **0.35**
+- 256차원 축소로 검색 속도 향상
+- Ablation Study: 55.1점 → **72.6점**
+
+</td>
+</tr>
+</table>
+
+### 추천 파이프라인 흐름
+
+```mermaid
+graph LR
+    A[Profile<br/>사용자 데이터] --> B[Embed<br/>가중 평균 임베딩]
+    B --> C[VectorSearch<br/>상위 30개]
+    C --> D[Rerank<br/>7개 압축]
+    D --> E[Filter<br/>조건 필터링]
+    E --> F[GraphExpand<br/>관계 조회]
+    F --> G[Conflict<br/>중복 감지]
+    G --> H[LLM<br/>추천 생성]
+    H --> I[Save<br/>DB 저장]
+```
+
+<details>
+<summary><b>핵심 코드 보기</b></summary>
+
+```python
+# app/domain/recommend_ai/graph.py - LangGraph 파이프라인 구성
+from langgraph.graph import StateGraph, START, END
+
+def build_recommend_graph():
+    graph = StateGraph(RecommendState)
+    
+    # 노드 등록
+    graph.add_node("profile", profile_node)
+    graph.add_node("embed", embed_node)
+    graph.add_node("vector_search", vector_search_node)
+    graph.add_node("rerank", rerank_node)
+    graph.add_node("filter", filter_node)
+    graph.add_node("graph_expand", graph_expand_node)
+    graph.add_node("conflict", conflict_node)
+    graph.add_node("llm", llm_recommend_node)
+    graph.add_node("save", save_node)
+    
+    # 에지 연결
+    graph.add_edge(START, "profile")
+    graph.add_conditional_edges("profile", _has_error, {
+        "save": "save", 
+        "continue": "embed"
+    })
+    # ... (생략) ...
+    
+    return graph.compile()
+```
+
+**코드 링크**: [LangGraph Pipeline](https://github.com/5kstration/ai-service-be/blob/main/app/domain/recommend_ai/graph.py) | [Embedding Node](https://github.com/5kstration/ai-service-be/blob/main/app/domain/recommend_ai/nodes.py)
+
+</details>
+
+---
+
+## 2. 실시간 이벤트 처리 및 CDC 기반 데이터 동기화
+
+### 기능 개요
+
+Debezium CDC와 NATS JetStream을 활용한 이벤트 기반 아키텍처로 데이터 일관성을 보장하면서 실시간 처리를 구현했습니다.
+
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**핵심 아키텍처**
+- Debezium: PostgreSQL WAL 실시간 캡처
+- NATS JetStream: Pub/Sub 메시징
+- Leaf Node: AWS EKS ↔ 온프레미스 연결
+- CQRS: 읽기/쓰기 책임 분리
+
+</td>
+<td width="50%" valign="top">
+
+**고가용성 보장**
+- Durable Consumer (재시작 시 이어서 처리)
+- Queue Group (중복 방지)
+- Manual ACK (At-Least-Once 보장)
+- Offset 저장 (재시작 복구)
+
+</td>
+</tr>
+</table>
+
+### 데이터 흐름
+
+```
+PostgreSQL → Debezium → NATS JetStream → AI/Alarm Service
+   (WAL)      (CDC)      (Pub/Sub)        (Consumer)
+```
+
+<details>
+<summary><b>핵심 코드 보기</b></summary>
+
+```yaml
+# debezium/aws_debezium/debezium-budget.yaml - CDC 설정
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: debezium-budget-config
+data:
+  application.properties: |
+    debezium.sink.type=nats-jetstream
+    debezium.sink.nats-jetstream.url=nats://k8s_leaf:leaf_password@10.0.2.65:4222
+    
+    debezium.source.connector.class=io.debezium.connector.postgresql.PostgresConnector
+    debezium.source.database.hostname=oka-budget.ctku6oc2yg75.ap-northeast-2.rds.amazonaws.com
+    debezium.source.topic.prefix=budget-server
+    debezium.source.plugin.name=pgoutput
+```
+
+**코드 링크**: [Debezium Config](https://github.com/5kstration/debezium/blob/main/aws_debezium/debezium-budget.yaml) | [NATS Consumer](https://github.com/5kstration/alarm-service-be/blob/main/src/main/java/com/project/backend/domain/notification/listener/NatsSocialEventListener.java)
+
+</details>
+
+---
+
+## 3. Istio 기반 서비스 메시(Service Mesh) 및 트래픽 제어
+
+### 기능 개요
+
+Istio 서비스 메시와 Argo Rollouts를 결합하여 카나리 배포로 무중단 배포를 실현했습니다.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**핵심 기능**
+- Envoy Sidecar 자동 주입
+- 경로 기반 라우팅 (VirtualService)
+- mTLS 암호화 통신
+- Argo Rollouts 카나리 배포
+
+</td>
+<td width="50%" valign="top">
+
+**배포 프로세스**
+1. Canary Replica 생성 (0%)
+2. 트래픽 점진 전환 (10%→30%→50%→100%)
+3. LLM Judge 검증 (72점 이상)
+4. 자동 롤백 (실패 시)
+
+</td>
+</tr>
+</table>
+
+<details>
+<summary><b>핵심 코드 보기</b></summary>
+
+```yaml
+# infra/manifest/gateway-service/istio.yaml
+apiVersion: networking.istio.io/v1beta1
+kind: VirtualService
+metadata:
+  name: gateway-service-moneylog-vs
+spec:
+  hosts: ["*"]
+  gateways: [moneylog-gateway]
+  http:
+    - match:
+        - uri:
+            prefix: "/graphql"
+      route:
+        - destination:
+            host: bff-service
+            port:
+              number: 8085
+```
+
+**코드 링크**: [Istio Gateway](https://github.com/5kstration/infra/blob/main/manifest/gateway-service/istio.yaml) | [Jenkinsfile Canary](https://github.com/5kstration/ai-service-be/blob/main/Jenkinsfile)
+
+</details>
+
+---
+
+## 4. Hot/Cold 데이터 아키텍처를 통한 데이터 라이프사이클 최적화
+
+### 기능 개요
+
+Hot Storage(S3)와 Cold Storage(MinIO)를 자동 티어링하여 성능과 비용을 동시에 최적화했습니다.
+
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**저장소 구성**
+- **Hot Storage (S3)**: 최근 30일 데이터
+- **Cold Storage (MinIO)**: 30일 이상 데이터
+- **Hybrid Cloud**: Site-to-Site VPN 연결
+
+</td>
+<td width="50%" valign="top">
+
+**비용 절감**
+- S3: $0.025/GB/월
+- MinIO: ~$0.007/GB/월
+- **월간 저장 비용 60% 절감**
+
+</td>
+</tr>
+</table>
+
+### 데이터 라이프사이클
+
+```mermaid
+graph LR
+    A[HOT<br/>S3 업로드] --> B[ARCHIVING<br/>MinIO 복사]
+    B --> C[BOTH<br/>체크섬 검증]
+    C --> D[DELETING_HOT<br/>7일 대기]
+    D --> E[COLD<br/>S3 삭제 완료]
+```
+
+**자동화 스케줄러**
+- 📅 매일 03:00 KST: 아카이브 작업 (50개/배치)
+- 📅 매일 03:30 KST: Hot 삭제 작업
+
+<details>
+<summary><b>핵심 코드 보기</b></summary>
+
+```java
+// FeedImageArchiveScheduler.java - 자동화 스케줄러
+@Scheduled(cron = "0 0 3 * * *", zone = "Asia/Seoul")
+public void archiveEligibleImages() {
+    feedImageArchiveBatchService.archiveEligibleImages();
+}
+
+@Scheduled(cron = "0 30 3 * * *", zone = "Asia/Seoul")
+public void deleteEligibleHotObjects() {
+    feedImageHotDeletionService.deleteEligibleHotObjects();
+}
+```
+
+**코드 링크**: [Archive Scheduler](https://github.com/5kstration/budget-service-be/blob/main/src/main/java/com/project/backend/domain/feedimage/service/FeedImageArchiveScheduler.java) | [MinIO StatefulSet](https://github.com/5kstration/budget-service-be/blob/main/k8s/minio/statefulset.yaml)
+
+</details>
+
+---
+
+## 5. AIOps 및 SRE 기반의 고가용성 인프라 운영
+
+### 기능 개요
+
+Prometheus + Sloth로 SLO를 관리하고, AWS Lambda + Claude AI로 장애를 자동 분석하여 Slack으로 알림합니다.
+
+<table>
+<tr>
+<td width="50%" valign="top">
+
+**SLI/SLO 정의**
+- Gateway: 99.0% 가용성, 500ms 레이턴시
+- Core APIs: 99.0% 가용성
+- AI Service: 95.0% 가용성, 30s 레이턴시
+- CDC: 99.0% 시간 동안 3초 이내
+- NATS: 99.0% 시간 동안 10k 미만
+
+</td>
+<td width="50%" valign="top">
+
+**AIOps 효과**
+- 평균 분석 시간(MTTR): **15초 이내**
+- Slack 알림: 장애 후 **30초 이내**
+
+</td>
+</tr>
+</table>
+
+### AIOps 자동화 워크플로우
+
+```mermaid
+graph LR
+    A[Prometheus<br/>SLO 감지] --> B[Alertmanager<br/>필터링]
+    B --> C[SNS<br/>발행]
+    C --> D[Lambda<br/>트리거]
+    D --> E[Loki<br/>로그 수집]
+    E --> F[Claude AI<br/>분석]
+    F --> G[Slack<br/>알림]
+```
+
+<details>
+<summary><b>핵심 코드 보기</b></summary>
+
+```python
+# aiops-lambda/lambda_function.py - AI 자동 분석
+def lambda_handler(event, context):
+    for record in event['Records']:
+        alert_data = json.loads(record['Sns']['Message'])
+        
+        for alert in alert_data.get('alerts', []):
+            if alert['status'] == 'firing':
+                service_name = alert['labels'].get('service')
+                
+                # 1. Loki에서 로그 수집
+                logs = get_loki_logs(service_name)
+                
+                # 2. Bedrock으로 AI 분석
+                analysis = analyze_with_bedrock(alert_desc, logs)
+                
+                # 3. Slack으로 리포트 전송
+                send_to_slack(alert_title, analysis)
+```
+
+**코드 링크**: [AIOps Lambda](https://github.com/5kstration/infra/blob/main/aiops-lambda/lambda_function.py) | [SLO Definitions](https://github.com/5kstration/infra/blob/main/manifest/monitoring/)
+
+</details>
+
+---
+
+
+<div align="center">
+
+---
+
+### Contact & Links
+
+[![GitHub Organization](https://img.shields.io/badge/GitHub-5kstration-181717?style=for-the-badge&logo=github)](https://github.com/5kstration)
+
+**Made with ❤️ by Team 5kstration**
+
+---
+
+</div>
