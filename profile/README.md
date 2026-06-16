@@ -105,7 +105,7 @@ MoneyLog는 이러한 한계를 해결하기 위해 AI를 활용하여 사용자
 ## 2. 아키텍쳐
 
 ### 2-1. 시스템 아키텍쳐
-(다이어그램, 도식화 등을 활용하여 시스템의 구성을 확인할 수 있는 이미지를 첨부해 주세요.)
+<img width="1384" height="600" alt="시스템아키텍처" src="https://github.com/user-attachments/assets/72edaf97-db0b-4e79-9380-15b96c2dcaf7" />
 
 ### 설명
 이 시스템 아키텍처는 AWS 클라우드와 온프레미스(On-Premise) 환경을 Site-to-Site VPN으로 연결한 하이브리드 클라우드 구조입니다.
@@ -113,7 +113,8 @@ MoneyLog는 이러한 한계를 해결하기 위해 AI를 활용하여 사용자
 * **온프레미스**: vSphere(ESXi) 인프라 위에서 쿠버네티스(k8s) 클러스터가 동작하며, HAProxy와 Keepalived를 활용한 이중화를 구성했습니다. NATS JetStream 및 데이터베이스를 Active-Standby 구조로 배포하여 안정적인 메시징과 데이터 관리를 수행합니다.
 
 ### 2-2. 소프트웨어 아키텍처
-(다이어그램, 도식화 등을 활용하여 프로젝트의 구성을 확인할 수 있는 이미지를 첨부해 주세요.)
+<img width="476" height="593" alt="소프트웨어아키텍처" src="https://github.com/user-attachments/assets/50d8238b-6743-4830-9b6e-d8176b1e085d" />
+
 
 ### 설명
 이 소프트웨어 아키텍처는 마이크로서비스 아키텍처(MSA)를 기반으로 백엔드 시스템을 구성하고 있습니다.
@@ -145,7 +146,8 @@ MoneyLog는 이러한 한계를 해결하기 위해 AI를 활용하여 사용자
 - **핵심 기술**: Prometheus/Grafana 기반 메트릭 수집, AIOps를 통한 Root Cause Analysis(근본 원인 분석) 및 슬랙 알림 파이프라인
 
 ### 3-2. 통합 워크플로우 다이어그램
-(프로젝트의 기능들이 어떤 식으로 연결되며, 어떤 흐름으로 작동하는지 한 눈에 파악할 수 있도록 이미지를 첨부해 주세요.)
+<img width="1294" height="665" alt="전체 워크플로우" src="https://github.com/user-attachments/assets/b212fefa-32a0-4377-b049-f00ff6290afa" />
+
 
 ### 3-3. 세부 기능 소개
 
