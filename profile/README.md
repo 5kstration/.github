@@ -434,7 +434,7 @@ data:
     debezium.source.plugin.name=pgoutput
 ```
 
-**코드 링크**: [Debezium Config](https://github.com/5kstration/debezium/blob/main/aws_debezium/debezium-budget.yaml) | [NATS Consumer](https://github.com/5kstration/alarm-service-be/blob/main/src/main/java/com/project/backend/domain/notification/listener/NatsSocialEventListener.java)
+**코드 링크**: [Debezium Config](https://github.com/5kstration/infra/blob/main/manifest/debezium/aws/debezium-budget.yaml) | [NATS Consumer](https://github.com/5kstration/alarm-service-be/blob/main/src/main/java/com/project/backend/domain/notification/listener/NatsSocialEventListener.java)
 
 </details>
 
@@ -628,9 +628,6 @@ def lambda_handler(event, context):
 **코드 링크**: [AIOps Lambda](https://github.com/5kstration/infra/blob/main/aiops-lambda/lambda_function.py) | [SLO Definitions](https://github.com/5kstration/infra/blob/main/manifest/monitoring/)
 
 </details>
-
----
-
 
 <div align="center">
 
